@@ -2,7 +2,7 @@
 
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
-import { Box, Heading, Flex, Text, Spinner } from "@chakra-ui/react";
+import { Box, Flex, Text, Skeleton } from "@chakra-ui/react";
 import { HABITS } from "@/config/habits";
 
 interface WeeklyGridProps {
@@ -56,9 +56,15 @@ export default function WeeklyGrid({ refreshTrigger }: WeeklyGridProps) {
 
   if (isLoading) {
     return (
-      <Box textAlign="center" py={4}>
-        <Spinner size="md" color="blue.500" />
-      </Box>
+      <Flex justify="space-between" gap={2} direction={{ base: "column", sm: "row" }}>
+        {Array.from({ length: 7 }).map((_, i) => (
+          <Box key={i} textAlign="center" flex={1}>
+            <Skeleton height="10px" width="100%" mb={2} borderRadius="md" />
+            <Skeleton height={{ base: "28px", md: "40px" }} width="100%" borderRadius="md" />
+            <Skeleton height="10px" width="60%" mx="auto" mt={2} borderRadius="md" />
+          </Box>
+        ))}
+      </Flex>
     );
   }
   if (error) {
@@ -74,9 +80,8 @@ export default function WeeklyGrid({ refreshTrigger }: WeeklyGridProps) {
   const weekPercentage = Math.round((weekTotal / weekMax) * 100);
 
   return (
-    <Box bg="white" p={{ base: 2, md: 4 }} borderRadius="2xl" borderWidth={1} boxShadow={{ base: "sm", md: "md" }}>
-      <Flex justify="space-between" align="center" mb={4} direction={{ base: "column", sm: "row" }} gap={2}>
-        <Heading size={{ base: "sm", md: "md" }}>Últimos 7 días</Heading>
+    <>
+      <Flex justify="flex-end" align="center" mb={4}>
         <Text fontSize={{ base: "sm", md: "md" }} color="gray.600">
           {weekPercentage}% total
         </Text>
@@ -109,6 +114,6 @@ export default function WeeklyGrid({ refreshTrigger }: WeeklyGridProps) {
           </Box>
         ))}
       </Flex>
-    </Box>
+    </>
   );
 }

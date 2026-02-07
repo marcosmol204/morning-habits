@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import DailyHabits from "@/components/DailyHabits";
 import WeeklyGrid from "@/components/WeeklyGrid";
 import MonthlyGrid from "@/components/MonthlyGrid";
+import CollapsibleSection from "@/components/CollapsibleSection";
 
 interface HomeContentProps {
   today: string;
@@ -30,13 +31,13 @@ export default function HomeContent({ today, initialHabits }: HomeContentProps) 
             <DailyHabits date={today} initialHabits={initialHabits} />
           </Box>
 
-          <Box bg="white" p={{ base: 2, md: 4 }} borderRadius="2xl" borderWidth={1} boxShadow={{ base: "sm", md: "md" }}>
+          <CollapsibleSection title="Últimos 7 días">
             <WeeklyGrid />
-          </Box>
+          </CollapsibleSection>
 
-          <Box bg="white" p={{ base: 2, md: 4 }} borderRadius="2xl" borderWidth={1} boxShadow={{ base: "sm", md: "md" }}>
+          <CollapsibleSection title="Últimos 30 días">
             <MonthlyGrid />
-          </Box>
+          </CollapsibleSection>
         </VStack>
       </Container>
     </Box>

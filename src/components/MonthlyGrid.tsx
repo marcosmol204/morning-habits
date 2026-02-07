@@ -2,7 +2,7 @@
 
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
-import { Box, Heading, Flex, Text, Spinner, SimpleGrid } from "@chakra-ui/react";
+import { Box, Flex, Text, Skeleton, SimpleGrid } from "@chakra-ui/react";
 import { HABITS } from "@/config/habits";
 
 interface MonthlyGridProps {
@@ -55,8 +55,16 @@ export default function MonthlyGrid({ refreshTrigger }: MonthlyGridProps) {
 
   if (isLoading) {
     return (
-      <Box textAlign="center" py={4}>
-        <Spinner size="md" color="blue.500" />
+      <Box>
+        <SimpleGrid columns={{ base: 5, sm: 10 }} gap={1}>
+          {Array.from({ length: 30 }).map((_, i) => (
+            <Skeleton key={i} height={{ base: "14px", md: "20px" }} width="100%" borderRadius="sm" />
+          ))}
+        </SimpleGrid>
+        <Flex mt={4} gap={2}>
+          <Skeleton height="16px" width="120px" borderRadius="md" />
+          <Skeleton height="16px" width="180px" borderRadius="md" />
+        </Flex>
       </Box>
     );
   }
@@ -75,9 +83,8 @@ export default function MonthlyGrid({ refreshTrigger }: MonthlyGridProps) {
   const perfectDays = days.filter((d) => d.percentage === 100).length;
 
   return (
-    <Box bg="white" p={{ base: 2, md: 4 }} borderRadius="2xl" borderWidth={1} boxShadow={{ base: "sm", md: "md" }}>
+    <>
       <Flex justify="space-between" align="center" mb={4} direction={{ base: "column", sm: "row" }} gap={2}>
-        <Heading size={{ base: "sm", md: "md" }}>Últimos 30 días</Heading>
         <Text fontSize={{ base: "sm", md: "md" }} color="gray.600">
           {monthPercentage}% total
         </Text>
@@ -109,6 +116,6 @@ export default function MonthlyGrid({ refreshTrigger }: MonthlyGridProps) {
           <Text>Más</Text>
         </Flex>
       </Flex>
-    </Box>
+    </>
   );
 }
