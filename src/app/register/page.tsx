@@ -87,7 +87,7 @@ export default function RegisterPage() {
           <VStack gap={6}>
             <Box textAlign="center">
               <Heading size="lg" mb={2}>
-                Crear cuenta
+                Crear una cuenta
               </Heading>
               <Text color="gray.600">Comienza a registrar tus hábitos matutinos</Text>
             </Box>
