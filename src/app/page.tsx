@@ -6,6 +6,10 @@ export default async function Home() {
   const initialHabits = await getHabitsForDate(today);
 
   return (
-    <HomeContent today={today} initialHabits={initialHabits.habits ?? {}} />
+    <HomeContent
+      today={today}
+      initialHabits={initialHabits.habits ?? {}}
+      initialHabitInputs={initialHabits.habitInputs ?? {}}
+    />
   );
 }

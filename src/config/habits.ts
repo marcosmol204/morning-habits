@@ -2,6 +2,8 @@ export interface Habit {
   key: string;
   label: string;
   icon: string;
+  /** Number of text inputs (0 = checkbox only, 1 or 3 = that many inputs) */
+  inputCount?: number;
 }
 
 export const HABITS: Habit[] = [
@@ -11,9 +13,9 @@ export const HABITS: Habit[] = [
   { key: "2_mins_of_breath", label: "2 minutos de respiración", icon: "🌬" },
   { key: "hydration", label: "Beber agua", icon: "💧" },
   { key: "movement", label: "5 minutos de movimiento", icon: "🏃" },
-  { key: "intention", label: "Escribe tu intención diaria", icon: "📝" },
+  { key: "intention", label: "Escribe tu intención diaria", icon: "📝", inputCount: 1 },
   { key: "avoid_negative_stimulants", label: "Evitar estimulantes negativos", icon: "🚫" },
-  { key: "gratitude", label: "Práctica de gratitud", icon: "🙏" },
+  { key: "gratitude", label: "Práctica de gratitud", icon: "🙏", inputCount: 3 },
   { key: "positive_action", label: "Acción positiva", icon: "✅" },
   { key: "nutritional_supplements", label: "Electrolitos y Creatina", icon: "💊" },
 ];

@@ -6,6 +6,6 @@ export async function getHabitsForDate(date: string) {
     const res = await fetch(`${process.env.NEXTAUTH_URL}/api/habits?date=${date}`,
         { headers: { Cookie: cookie } }
     );
-    if (!res.ok) return { habits: {} };
+    if (!res.ok) return { habits: {}, habitInputs: {} };
     return res.json();
 }

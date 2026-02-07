@@ -5,6 +5,8 @@ export interface IHabitEntry extends Document {
   userId: mongoose.Types.ObjectId;
   date: string; // "YYYY-MM-DD" format
   habits: Map<string, boolean>;
+  /** Text input values per habit key (for habits with inputCount 1 or 3) */
+  habitInputs: Map<string, string[]>;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -23,6 +25,11 @@ const HabitEntrySchema = new Schema<IHabitEntry>(
     habits: {
       type: Map,
       of: Boolean,
+      default: {},
+    },
+    habitInputs: {
+      type: Map,
+      of: [String],
       default: {},
     },
   },

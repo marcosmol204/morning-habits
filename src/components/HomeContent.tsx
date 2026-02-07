@@ -10,9 +10,10 @@ import CollapsibleSection from "@/components/CollapsibleSection";
 interface HomeContentProps {
   today: string;
   initialHabits: Record<string, boolean>;
+  initialHabitInputs?: Record<string, string[]>;
 }
 
-export default function HomeContent({ today, initialHabits }: HomeContentProps) {
+export default function HomeContent({ today, initialHabits, initialHabitInputs = {} }: HomeContentProps) {
   return (
     <Box minH="100vh" bg="gray.50">
       <Navbar />
@@ -28,7 +29,7 @@ export default function HomeContent({ today, initialHabits }: HomeContentProps) 
           </Box>
 
           <Box bg="white" p={{ base: 3, md: 6 }} borderRadius="2xl" borderWidth={1} boxShadow={{ base: "md", md: "lg" }}>
-            <DailyHabits date={today} initialHabits={initialHabits} />
+            <DailyHabits date={today} initialHabits={initialHabits} initialHabitInputs={initialHabitInputs} />
           </Box>
 
           <CollapsibleSection title="Últimos 7 días">

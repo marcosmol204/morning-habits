@@ -8,6 +8,7 @@ import HabitCheckbox from "./HabitCheckbox";
 interface DailyHabitsProps {
   date: string;
   initialHabits?: Record<string, boolean>;
+  initialHabitInputs?: Record<string, string[]>;
   onUpdate?: () => void;
 }
 
@@ -22,7 +23,7 @@ const formatDate = (dateStr: string) => {
 };
 
 function DailyHabitsContent({ date }: { date: string }) {
-  const { habits, isLoading, error, updating, handleToggle } = useHabits();
+  const { habits, habitInputs, isLoading, error, updating, handleToggle, updateHabitInputs } = useHabits();
   const completedCount = Object.values(habits).filter(Boolean).length;
   const percentage = Math.round((completedCount / HABITS.length) * 100);
 
@@ -68,7 +69,9 @@ function DailyHabitsContent({ date }: { date: string }) {
             key={habit.key}
             habit={habit}
             checked={habits[habit.key] || false}
+            inputs={habitInputs[habit.key]}
             onToggle={handleToggle}
+            onInputsChange={updateHabitInputs}
             disabled={updating === habit.key}
           />
         ))}
@@ -77,9 +80,9 @@ function DailyHabitsContent({ date }: { date: string }) {
   );
 }
 
-export default function DailyHabits({ date, initialHabits }: DailyHabitsProps) {
+export default function DailyHabits({ date, initialHabits, initialHabitInputs }: DailyHabitsProps) {
   return (
-    <HabitsProvider date={date} initialHabits={initialHabits}>
+    <HabitsProvider date={date} initialHabits={initialHabits} initialHabitInputs={initialHabitInputs}>
       <DailyHabitsContent date={date} />
     </HabitsProvider>
   );
