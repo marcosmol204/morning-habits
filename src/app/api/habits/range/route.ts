@@ -5,6 +5,8 @@ import dbConnect from "@/lib/mongodb";
 import HabitEntry from "@/models/HabitEntry";
 import mongoose from "mongoose";
 
+export const dynamic = "force-dynamic";
+
 function habitsToObject(habits: Map<string, boolean> | Record<string, boolean> | undefined): Record<string, boolean> {
   if (!habits) return {};
   if (habits instanceof Map) return Object.fromEntries(habits);

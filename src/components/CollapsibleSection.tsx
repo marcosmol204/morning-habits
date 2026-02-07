@@ -33,7 +33,6 @@ export default function CollapsibleSection({ title, summary, children }: Collaps
     <Box bg="white" p={{ base: 2, md: 4 }} borderRadius="2xl" borderWidth={1} boxShadow={{ base: "sm", md: "md" }}>
       <Flex
         as="button"
-        type="button"
         width="100%"
         justify="space-between"
         align="center"
